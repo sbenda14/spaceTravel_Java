@@ -16,7 +16,6 @@ public class Brute{
 	
 	 /*
      * Constructs instance of Brute 
-     * 
      */
     public Brute() { 
         
