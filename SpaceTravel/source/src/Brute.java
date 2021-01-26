@@ -15,7 +15,7 @@ public class Brute{
 	private double minimumCost;
 	
 	 /*
-     * Constructs instance of Brute 
+     * Constructs instance of Brute to use with TravelDriver
      */
     public Brute() { 
         
