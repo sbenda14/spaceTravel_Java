@@ -31,8 +31,8 @@ public class TravelDriver{
 				//read in the transactions
 				String point = scan.nextLine();
 				StringTokenizer tok = new StringTokenizer(point, ":");
-				//should only be 4 tokens...
-				//add in error checking later!
+				//add in error checking!
+				tok.nextToken(); //this is GPS, not needed
 				String name = tok.nextToken();
 				double xpt = Double.parseDouble(tok.nextToken());
 				double ypt = Double.parseDouble(tok.nextToken());
@@ -44,7 +44,8 @@ public class TravelDriver{
 			}
 			scan.close();
 			
-			/*System.out.println("Original linked list:" );
+			/*
+			System.out.println("Original linked list:" );
 			System.out.println( myPoints.toString());  
 			*/
 			
