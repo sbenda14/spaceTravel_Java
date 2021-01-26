@@ -1,4 +1,4 @@
-package source;
+package src;
 
 import java.util.Hashtable;
 import java.util.LinkedList;

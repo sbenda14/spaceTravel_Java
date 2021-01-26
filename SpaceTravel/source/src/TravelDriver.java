@@ -1,4 +1,4 @@
-package source;
+package src;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -70,9 +70,10 @@ public class TravelDriver{
 			
 			
 			//using brute force method:
+			/*
 			Brute brutePath = new Brute();
 			ArrayList<AdjNode> naivePath = brutePath.getNaivePath(myList);
-			
+			*/
 			
 		} else {
 			System.err.println(file + " does not exists - please check the file path");

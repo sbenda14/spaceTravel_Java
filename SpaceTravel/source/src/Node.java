@@ -1,4 +1,4 @@
-package source;
+package src;
 /*
 * Node class. Holds a GPS point name and its XYZ coordinates	
 */
