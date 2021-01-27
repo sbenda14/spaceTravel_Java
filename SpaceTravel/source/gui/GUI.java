@@ -31,7 +31,6 @@ public class GUI extends JFrame {
        fileChooser.setCurrentDirectory(new File("C:/Users/sbend/OneDrive/Desktop"));
         
        // add the component to the frame
-       
        setVisible(true);
 	   setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
        setBounds(100, 100, 450, 300);
