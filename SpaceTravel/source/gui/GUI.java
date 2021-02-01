@@ -9,18 +9,44 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
 
+import src.AdjacencyList;
+import src.FileImporter;
+import src.Nearest;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.EventQueue;
 import java.awt.FlowLayout;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.text.DecimalFormat;
 
 /**
- * GUI panel for project. 
+ * GUI Driver for the traveling salesperson problem. Takes in user file of x,y,z coordinates
+* and parses into adjacency matrix/list. Sends on to method to solve with dynamic programming. 
  * source: https://www.technical-recipes.com/2017/creating-a-windows-application-in-java-using-eclipse/
  */
 public class GUI extends JFrame {
 	 private JPanel contentPane;
+	 private FilePicker filePicker;
+	 private JLabel lblResults;
+	 private JLabel lblDistance;
+	 
+	 public static void main(String[] args)  {
+		 EventQueue.invokeLater(new Runnable() {
+	            public void run() {
+	                try {
+	                    GUI frame = new GUI();
+	                    frame.setVisible(true);
+	                } catch (Exception e) {
+	                    e.printStackTrace();
+	                }
+	            }
+	        });
+	 }
 	 
 	/**
     * Create the frame.
@@ -36,7 +62,7 @@ public class GUI extends JFrame {
 		contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));
 		
 		// set up a file picker component
-	    FilePicker filePicker = new FilePicker("Pick a file", "Browse...");
+	    filePicker = new FilePicker("Pick a file", "Browse...");
 	    filePicker.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 	    FlowLayout flowLayout = (FlowLayout) filePicker.getLayout();
         filePicker.setMode(FilePicker.MODE_OPEN);
@@ -50,17 +76,39 @@ public class GUI extends JFrame {
         runAlgo.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		runAlgo.setLayout(new BorderLayout(0, 0));
 		JButton btnNearestNeighbor = new JButton("Run Nearest Neighbor");
+		btnNearestNeighbor.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+            	btnNearestActionPerformed(evt);            
+            }
+        });
 		runAlgo.add(btnNearestNeighbor, BorderLayout.NORTH);
 		
-		JLabel lblDistance = new JLabel("Total Distance:");
+		lblDistance = new JLabel("Total Distance:");
 		runAlgo.add(lblDistance, BorderLayout.SOUTH);
 		
-		JLabel lblResults = new JLabel("Results");
+		lblResults = new JLabel("Results");
 		lblResults.setOpaque(true);
 		lblResults.setBackground(Color.WHITE);
 		lblResults.setVerticalAlignment(SwingConstants.TOP);
 		runAlgo.add(lblResults, BorderLayout.CENTER);
 		contentPane.add(runAlgo);
    }
+   
+	private void btnNearestActionPerformed(ActionEvent evt) {
+		FileImporter newFile = new FileImporter();
+		try {
+			AdjacencyList myList = newFile.importFile(filePicker.getSelectedFilePath());
+			Nearest nearPath = new Nearest(myList);
+			
+			lblResults.setText(nearPath.printString());
+			
+			DecimalFormat numberFormat = new DecimalFormat("#.00");
+			lblDistance.setText("Total distance " + numberFormat.format(nearPath.getTotalDistance()));
+		} catch (FileNotFoundException e) {
+			lblResults.setText("File not found");
+		}
+	
+    }
    
 }

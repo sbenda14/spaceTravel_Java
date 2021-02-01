@@ -7,17 +7,14 @@ import java.util.LinkedList;
  * Should be within ~25% of exact solution on average... 
  */
 public class Nearest{
+	private ArrayList<AdjNode> ordered;
 	
 	 /*
      * Constructs instance of Nearest 
      * 
      */
-    public Nearest() { 
-        
-    }
-	
-	public ArrayList<AdjNode> getNearestNeighbor(AdjacencyList myList){
-		ArrayList<AdjNode> ordered = new ArrayList<>();
+    public Nearest(AdjacencyList myList) { 
+    	ordered = new ArrayList<>();
 		ArrayList<String> addedNodes = new ArrayList<>();
 		
 		//take first linked list off of mylist
@@ -54,9 +51,29 @@ public class Nearest{
 				ordered.add(e);
 			}
 		}
+    }
 		
-		return ordered;
+	public double getTotalDistance() {
+		double sumDistance = 0;
+		for(AdjNode e: ordered) {
+			sumDistance += e.getWeight();
+		}
+		return sumDistance;
 	}
 	
+	public String printString() {
+		StringBuilder str = new StringBuilder();
+		str.append("<html>");
+		for(AdjNode e: ordered) {
+			str.append(e.getInitial());
+			str.append("<br>");
+		}
+		AdjNode lastOne = ordered.get(ordered.size() -1 ); 
+		str.append(lastOne.getDest());
+		str.append("</html>");
+		
+		return str.toString();
+	}
+
 	
 }
