@@ -99,6 +99,7 @@ public class GUI extends JFrame {
 		FileImporter newFile = new FileImporter();
 		try {
 			AdjacencyList myList = newFile.importFile(filePicker.getSelectedFilePath());
+			
 			Nearest nearPath = new Nearest(myList);
 			
 			lblResults.setText(nearPath.printString());
@@ -107,8 +108,12 @@ public class GUI extends JFrame {
 			lblDistance.setText("Total distance " + numberFormat.format(nearPath.getTotalDistance()));
 		} catch (FileNotFoundException e) {
 			lblResults.setText("File not found");
+		}catch(NumberFormatException e) {
+			lblResults.setText("Check GPS formatting");
+		}catch(Exception e) {
+			lblResults.setText("Ruh Roh! Something went wrong. Check GPS formatting");
 		}
-	
+		
     }
    
 }
