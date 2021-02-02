@@ -9,7 +9,7 @@ import java.util.LinkedList;
 public class Nearest{
 	private ArrayList<AdjNode> ordered;
 	
-	 /*
+	 /**
      * Constructs instance of Nearest 
      * 
      */
@@ -52,15 +52,23 @@ public class Nearest{
 			}
 		}
     }
-		
+	
+    /**
+     * Sums the total distance of ordered path. Divides by 1000 to get km
+     * @return the total distance in kilometers
+     */
 	public double getTotalDistance() {
 		double sumDistance = 0;
 		for(AdjNode e: ordered) {
 			sumDistance += e.getWeight();
 		}
-		return sumDistance;
+		return sumDistance/1000;
 	}
 	
+	/**
+	 * Formats the ordered path for JTextPane output
+	 * @return formatted string for JTextPane results
+	 */
 	public String printString() {
 		StringBuilder str = new StringBuilder();
 		str.append("<html>");

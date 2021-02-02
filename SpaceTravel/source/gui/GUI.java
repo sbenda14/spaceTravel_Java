@@ -5,6 +5,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
@@ -32,7 +33,7 @@ import java.text.DecimalFormat;
 public class GUI extends JFrame {
 	 private JPanel contentPane;
 	 private FilePicker filePicker;
-	 private JLabel lblResults;
+	 private JTextPane txtPaneResults;
 	 private JLabel lblDistance;
 	 
 	 public static void main(String[] args)  {
@@ -87,14 +88,18 @@ public class GUI extends JFrame {
 		lblDistance = new JLabel("Total Distance:");
 		runAlgo.add(lblDistance, BorderLayout.SOUTH);
 		
-		lblResults = new JLabel("Results");
-		lblResults.setOpaque(true);
-		lblResults.setBackground(Color.WHITE);
-		lblResults.setVerticalAlignment(SwingConstants.TOP);
-		runAlgo.add(lblResults, BorderLayout.CENTER);
+		txtPaneResults = new JTextPane();
+		txtPaneResults.setContentType("text/html"); 
+		txtPaneResults.setEditable(false); 
+		txtPaneResults.setText("Results");
+		runAlgo.add(txtPaneResults, BorderLayout.CENTER);
 		contentPane.add(runAlgo);
    }
    
+   /**
+    * Runs nearest neighbor algorithm on button click
+    * @param evt
+    */
 	private void btnNearestActionPerformed(ActionEvent evt) {
 		FileImporter newFile = new FileImporter();
 		try {
@@ -102,16 +107,16 @@ public class GUI extends JFrame {
 			
 			Nearest nearPath = new Nearest(myList);
 			
-			lblResults.setText(nearPath.printString());
+			txtPaneResults.setText(nearPath.printString());
 			
-			DecimalFormat numberFormat = new DecimalFormat("#.00");
-			lblDistance.setText("Total distance " + numberFormat.format(nearPath.getTotalDistance()));
+			DecimalFormat numberFormat = new DecimalFormat("#.0000");
+			lblDistance.setText("Total distance " + numberFormat.format(nearPath.getTotalDistance()) + " km" );
 		} catch (FileNotFoundException e) {
-			lblResults.setText("File not found");
+			txtPaneResults.setText("File not found");
 		}catch(NumberFormatException e) {
-			lblResults.setText("Check GPS formatting");
+			txtPaneResults.setText("Check GPS formatting");
 		}catch(Exception e) {
-			lblResults.setText("Ruh Roh! Something went wrong. Check GPS formatting");
+			txtPaneResults.setText("Ruh Roh! Something went wrong.");
 		}
 		
     }
