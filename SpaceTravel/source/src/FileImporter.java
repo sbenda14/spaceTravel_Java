@@ -5,10 +5,25 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
+/**
+ * Scans the txt file and creates an AdjacencyList from provided GPS points.
+ * @author sbend
+ *
+ */
 public class FileImporter {
 	
+	/**
+	 * FileImporter Constructor
+	 */
 	public FileImporter() {}
 	
+	/**
+	 * Given a .txt file of GPS points, parses XYZ coordinates and creates an adjacency list for each point.
+	 * 
+	 * @return AdjacencyList of provided GPS points
+	 * @throws FileNotFoundException
+	 * @throws NumberFormatException
+	 */
 	public AdjacencyList importFile(String fileName) throws FileNotFoundException, NumberFormatException{
 			//The file name is passed as an argument
 			File file = new File(fileName);
