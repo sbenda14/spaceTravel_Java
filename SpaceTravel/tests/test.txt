@@ -1,5 +1,0 @@
-GPS:way1:1:2:3:#fffff
-GPS:way2:2:3:4:#fffff
-GPS:way3:3:4:5:#fffff
-GPS:way4:4:5:6:#fffff
-GPS:way5:5:6:7:#fffff

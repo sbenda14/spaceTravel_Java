@@ -18,10 +18,10 @@ public class AdjacencyList {
     // List of adjacent nodes of a given vertex 
     private LinkedList<AdjNode>[] adj;
     
-    //Hastable of weights
+    //Hashtable of weights
     private Hashtable<String, Double> weightLookup;
       
-    /*
+    /**
      * Constructs Adjacency list given # of nodes 
      * @param numVertices, the number of vertices in graph
      */
@@ -36,7 +36,7 @@ public class AdjacencyList {
         
     } 
    
-    /*Add an edge between two vertices
+    /**Add an edge between two vertices
      * @param srcInd, the source point index
      * @param destInd, the destination point index
      * @param src, the source waypoint name
@@ -54,6 +54,10 @@ public class AdjacencyList {
         
     } 
     
+   /**
+    * Cycles through NodeList, creates edges from one point to all other points
+    * @param points, the points to create AdjacencyList for
+    */
     public void addAllEdges(NodeList points) { 
     	//cycle through all vertices in points, add edges to adj list
     	
@@ -82,7 +86,7 @@ public class AdjacencyList {
 		*/
     }
     
-	/*Determine weight between two vertices
+	/**Determine weight between two vertices
 	 * @param first, the first vertex
 	 * @param second, the second vertex
 	 * */
@@ -101,12 +105,21 @@ public class AdjacencyList {
         	return distance;
     }
     
-    /*Returns the neighbors for indicated node index*/
+    
+    /**
+     * Returns the neighbors for indicated node index 
+     * @param index, the index of the specified AdjNode
+     * @return all neighbors of specified AdjNode
+     */
     public LinkedList<AdjNode> getNeighbors(int index){
     	return adj[index];
     }
     
-    /*Returns the index of requested node in linkedList[] adj*/
+    /**
+     * Returns the index of requested node in linkedList[] adj
+     * @param initial, the waypoint name we need an index for
+     * @return the index of the requested node
+     */
     public int getIndex(String initial) {
     	int index = 0;
     	for(int i=0; i < adj.length; i++) {
@@ -118,7 +131,11 @@ public class AdjacencyList {
     	return index;
     }
     
-    /*Returns the size of the adjacency list*/
+    
+    /**
+     * Returns the size of the AdjacencyList, i.e. # of waypoints
+     * @return the size of the Adjacency list
+     */
     public int getSize() {
     	return V;
     }
