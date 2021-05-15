@@ -3,7 +3,7 @@
 
 This project attempts to solve the traveling salesperson problem in space. Given a set of X,Y,Z coordinates, 
 the nearest neighbor algorithm is used to find the 'shortest' path through space. On average, this algorithm should 
-be within ~25% of exact solution...
+be within ~25% of exact solution... [TSP wikipedia](https://en.wikipedia.org/wiki/Travelling_salesman_problem#Heuristic_and_approximation_algorithms)
 
 ## Assumptions of input file
 * it is a .txt file
